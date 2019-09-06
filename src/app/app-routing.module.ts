@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
     { path: 'doc-viewer', component: DocumentViewerComponent },
@@ -11,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), HttpClientModule],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
