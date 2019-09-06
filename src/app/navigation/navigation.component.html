@@ -3,6 +3,9 @@
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
+            <a mat-list-item routerLink="/welcome" routerLinkActive="active">
+                <mat-icon matListIcon>home</mat-icon>Home
+            </a>
             <a mat-list-item routerLink="/doc-viewer" routerLinkActive="active">
                 <mat-icon matListIcon>format_align_center</mat-icon>Huge Doc
             </a>
