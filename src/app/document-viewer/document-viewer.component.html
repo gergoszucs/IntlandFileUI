@@ -1,5 +1,8 @@
-<div class="document-wrapper">
+<div class="margin-2em" #paragraphContainer>
     <ng-container *ngFor="let row of paragraphs">
-        <p [innerHTML]="row"></p>
+        <span [innerHTML]="row" #docParagraph></span>
     </ng-container>
+    <span class="fixed-bottom-right" aria-label="Add a category">
+        {{renderedParagraphCount}}
+    </span>
 </div>

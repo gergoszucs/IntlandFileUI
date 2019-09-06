@@ -1,3 +1,8 @@
-.document-wrapper {
-    margin: 2em;
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    padding: 10px;
+    border-radius: 50px;
+    background: #7b1fa2;
 }
