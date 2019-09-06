@@ -1,8 +1,10 @@
-<div class="margin-2em" #paragraphContainer>
-    <ng-container *ngFor="let row of paragraphs">
-        <span [innerHTML]="row" #docParagraph></span>
-    </ng-container>
-    <span class="fixed-bottom-right" aria-label="Add a category">
-        {{renderedParagraphCount}}
-    </span>
-</div>
+<cdk-virtual-scroll-viewport class="viewport" itemSize="60" (scrolledIndexChange)="onScroll($event)">
+    <div class="margin-2em" #paragraphContainer>
+        <ng-container *cdkVirtualFor="let p of paragraphs">
+            <span [innerHTML]="p" #docParagraph></span>
+        </ng-container>
+    </div>
+</cdk-virtual-scroll-viewport>
+<span class="fixed-bottom-right">
+    {{renderedParagraphCount}}
+</span>
