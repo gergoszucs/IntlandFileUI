@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+    production: true,
+    // Should be coming from a CI/CD pipeline as a secret
+    apiUrl: 'http://localhost:8080/'
 };
