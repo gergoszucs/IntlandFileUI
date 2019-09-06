@@ -12,12 +12,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
+import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavigationComponent,
-        DocumentViewerComponent
+        DocumentViewerComponent,
+        WelcomeScreenComponent
     ],
     imports: [
         BrowserModule,
