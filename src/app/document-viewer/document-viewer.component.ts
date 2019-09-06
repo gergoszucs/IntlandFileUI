@@ -9,15 +9,23 @@ import { DocumentBatch } from '../models/document-batch';
     styleUrls: ['./document-viewer.component.scss']
 })
 export class DocumentViewerComponent implements OnInit {
-    private paragraphsFetched = 0;
+    public paragraphs: string[] = ['test'];
+
+    private paragraphsFetched: number;
+    private remainingParagraphs: number;
 
     constructor(private documentService: DocumentService) { }
 
     ngOnInit() {
-        this.documentService.getDocumentBatch(this.paragraphsFetched).subscribe({
-            next(documentBatch: DocumentBatch) { console.log('got value ' + documentBatch); },
-            error(err) { console.error('something wrong occurred: ' + err); }
+        this.documentService.getDocumentBatch(0).subscribe(documentBatch => {
+            this.paragraphs = documentBatch.paragraphs;
+            this.paragraphsFetched = documentBatch.paragraphs.length;
+            this.remainingParagraphs = documentBatch.remainingParagraphs;
         });
+    }
+
+    handler(event: any) {
+        console.log(event);
     }
 
 }

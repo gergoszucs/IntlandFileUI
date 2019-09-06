@@ -1,1 +1,5 @@
-<p>document-viewer works!</p>
+<div class="document-wrapper">
+    <ng-container *ngFor="let row of paragraphs">
+        <p [innerHTML]="row"></p>
+    </ng-container>
+</div>

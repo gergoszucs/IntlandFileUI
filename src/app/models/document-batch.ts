@@ -1,4 +1,4 @@
 export class DocumentBatch {
-    content: string;
+    paragraphs: string[];
     remainingParagraphs: number;
 }

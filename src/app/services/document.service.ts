@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { DocumentBatch } from '../models/document-batch';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,7 @@ export class DocumentService {
     }
 
     public getDocumentBatch(skip: number): Observable<DocumentBatch> {
+        // TODO: Error handling
         return this.httpClient.get<DocumentBatch>(this.constructDocumentBatchUrl(skip));
     }
 
