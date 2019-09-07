@@ -37,7 +37,7 @@ export class DocumentViewerComponent implements OnInit, AfterViewInit {
     }
 
     public onScroll(scrollIndex: number): void {
-        const hasScrolledDownEnough = scrollIndex > (this.paragraphsFetched - environment.scrollingThrottle);
+        const hasScrolledDownEnough = scrollIndex > (this.paragraphsFetched - environment.scrollingThreshold);
 
         if (hasScrolledDownEnough && !this.isFetchingData && this.remainingParagraphs !== 0) {
             this.fetchNextBatch();
