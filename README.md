@@ -1,11 +1,18 @@
-## Install
+# Document UI - Intland test project
 
-Run `npm i` to install the required packages.
+##### The project is based upon
 
-## Development server
+- Angular 8
+- Angular Material & CDK
 
-Run `ng serve -o` for a dev server. The app will automatically reload if you change any of the source files.
+##### After cloning the packages can be installed with
 
-## Running unit tests
+	npm i
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##### Then launched with
+
+	ng serve -o
+
+##### Tests can be execudet with
+
+	ng test
