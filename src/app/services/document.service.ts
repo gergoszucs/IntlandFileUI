@@ -21,6 +21,7 @@ export class DocumentService {
     }
 
     private constructDocumentBatchUrl(skip: number): string {
+        console.log(`${environment.apiUrl}/document?skip=${skip}&take=${this.take}`);
         return `${environment.apiUrl}/document?skip=${skip}&take=${this.take}`;
     }
 }

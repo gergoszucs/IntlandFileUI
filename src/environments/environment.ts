@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     // Should be coming from a CI/CD pipeline as a secret
-    apiUrl: 'http://localhost:8080/',
+    apiUrl: 'http://localhost:8080',
     // The maximum amount of paragraphs the browser can handle at once
     // The application may show even less than that
     browserParagraphLimit: 100,
