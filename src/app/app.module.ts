@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { WelcomeScreenComponent } from './components/welcome-screen/welcome-scre
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        ScrollingModule
+        ScrollingModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
