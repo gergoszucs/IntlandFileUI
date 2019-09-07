@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 
 import { DocumentViewerComponent } from './document-viewer.component';
 
-fdescribe('DocumentViewerComponent', () => {
+describe('DocumentViewerComponent', () => {
     let component: DocumentViewerComponent;
     let fixture: ComponentFixture<DocumentViewerComponent>;
 
