@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, AfterViewInit, ElementRef } from '@angular/core';
 
 import { DocumentService } from '../services/document.service';
 import { DocumentBatch } from '../models/document-batch';
@@ -10,26 +10,22 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./document-viewer.component.scss']
 })
 export class DocumentViewerComponent implements OnInit, AfterViewInit {
-    public paragraphs: string[] = ['test'];
+    public paragraphs: string[];
     public renderedParagraphCount: number;
 
     private paragraphsFetched: number;
     private remainingParagraphs: number;
-    private isFetchingData = false;
-    @ViewChildren('docParagraph') private renderedParagraphs: QueryList<any>;
+    private isFetchingData: boolean;
+    @ViewChildren('docParagraph') private renderedParagraphs: QueryList<ElementRef>;
 
-    constructor(private documentService: DocumentService) { }
+    constructor(private documentService: DocumentService) {
+        this.isFetchingData = false;
+        this.paragraphsFetched = 0;
+        this.paragraphs = [];
+    }
 
     public ngOnInit(): void {
-        this.documentService.getDocumentBatch(0).subscribe(
-            (documentBatch: DocumentBatch) => {
-                this.paragraphs = documentBatch.paragraphs;
-                this.paragraphsFetched = documentBatch.paragraphs.length;
-                this.remainingParagraphs = documentBatch.remainingParagraphs;
-            },
-            (err) => {
-                console.error(err);
-            });
+        this.fetchNextBatch();
     }
 
     public ngAfterViewInit(): void {
@@ -44,25 +40,30 @@ export class DocumentViewerComponent implements OnInit, AfterViewInit {
         const hasScrolledDownEnough = scrollIndex > (this.paragraphsFetched - environment.scrollingThrottle);
 
         if (hasScrolledDownEnough && !this.isFetchingData && this.remainingParagraphs !== 0) {
-            console.log('fetching data at: ', scrollIndex);
-            this.isFetchingData = true;
-            this.documentService.getDocumentBatch(this.paragraphsFetched).subscribe(
-                (documentBatch: DocumentBatch) => {
-                    this.paragraphs = this.paragraphs.concat(documentBatch.paragraphs);
-                    this.paragraphsFetched += documentBatch.paragraphs.length;
-                    this.remainingParagraphs = documentBatch.remainingParagraphs;
-                },
-                (err) => {
-                    console.error(err);
-                },
-                () => {
-                    this.isFetchingData = false;
-                }
-            );
+            this.fetchNextBatch();
         }
     }
 
+    private fetchNextBatch(): void {
+        this.isFetchingData = true;
+        this.documentService.getDocumentBatch(this.paragraphsFetched).subscribe(
+            (documentBatch: DocumentBatch) => {
+                this.paragraphs = this.paragraphs.concat(documentBatch.paragraphs);
+                this.paragraphsFetched += documentBatch.paragraphs.length;
+                this.remainingParagraphs = documentBatch.remainingParagraphs;
+            },
+            (err) => {
+                // TODO: log to some remote stash, create metrics etc
+                console.error(err);
+            },
+            () => {
+                this.isFetchingData = false;
+            }
+        );
+    }
+
     private setRenderedParagraphCount(): void {
+        // The AfterViewInit lifecycle hook requires the setTimeout trick to avoid change detection problems
         setTimeout(() => {
             this.renderedParagraphCount = this.renderedParagraphs.length;
         });
