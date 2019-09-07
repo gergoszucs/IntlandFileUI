@@ -1,10 +1,11 @@
-<cdk-virtual-scroll-viewport class="viewport" itemSize="60" (scrolledIndexChange)="onScroll($event)">
-    <div class="margin-2em" #paragraphContainer>
+<cdk-virtual-scroll-viewport class="viewport" [itemSize]="virtualScrollItemSize"
+    (scrolledIndexChange)="onScroll($event)">
+    <div class="margin-2em">
         <ng-container *cdkVirtualFor="let p of paragraphs">
             <span [innerHTML]="p" #docParagraph></span>
         </ng-container>
     </div>
 </cdk-virtual-scroll-viewport>
 <span class="fixed-bottom-right">
-    {{renderedParagraphCount}}
+    {{ renderedParagraphCount }}
 </span>

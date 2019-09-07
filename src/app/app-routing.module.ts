@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
-import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
-import { HttpClientModule } from '@angular/common/http';
+import { DocumentViewerComponent } from './components/document-viewer/document-viewer.component';
+import { WelcomeScreenComponent } from './components/welcome-screen/welcome-screen.component';
 
 const routes: Routes = [
     { path: 'doc-viewer', component: DocumentViewerComponent },

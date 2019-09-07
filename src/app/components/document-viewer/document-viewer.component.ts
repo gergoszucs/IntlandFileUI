@@ -1,7 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren, AfterViewInit, ElementRef } from '@angular/core';
 
-import { DocumentService } from '../services/document.service';
-import { DocumentBatch } from '../models/document-batch';
+import { DocumentService } from '../../services/document.service';
+import { DocumentBatch } from '../../models/document-batch';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class DocumentViewerComponent implements OnInit, AfterViewInit {
     public paragraphs: string[];
     public renderedParagraphCount: number;
+    public virtualScrollItemSize: number;
 
     private paragraphsFetched: number;
     private remainingParagraphs: number;
@@ -20,8 +21,11 @@ export class DocumentViewerComponent implements OnInit, AfterViewInit {
 
     constructor(private documentService: DocumentService) {
         this.isFetchingData = false;
-        this.paragraphsFetched = 0;
         this.paragraphs = [];
+        this.paragraphsFetched = 0;
+        // It's hard to guess the size of random text paragraphs, the control was designed for elements of the same height.
+        // 60px looks like a balanced value for this use case, we don't need a custom virtual scrolling strategy.
+        this.virtualScrollItemSize = 60;
     }
 
     public ngOnInit(): void {

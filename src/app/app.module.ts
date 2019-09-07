@@ -11,9 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
-import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { DocumentViewerComponent } from './components/document-viewer/document-viewer.component';
+import { WelcomeScreenComponent } from './components/welcome-screen/welcome-screen.component';
 
 @NgModule({
     declarations: [
