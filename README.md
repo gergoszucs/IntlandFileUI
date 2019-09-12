@@ -7,6 +7,11 @@
 
 It uses virtual and infinite scrolling techniques to effectively render huge documents.
 
+##### Prerequisites
+
+- Angular CLI must be installed globally
+- [NodeJS](https://nodejs.org/en/download/) must be installed (to have access to npm)
+
 ##### After cloning the packages can be installed with
 
 	npm i
